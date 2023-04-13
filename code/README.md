@@ -15,4 +15,4 @@
 * Next.js
 * [Leaflet](https://leafletjs.com) for web mapping
 * Possibly Netlify for hosting
-* Heroku or Vercel for API calls from Cloud
+  * [Netlify API Calls](https://docs.netlify.com/edge-functions/api/)
