@@ -13,6 +13,7 @@
 ## Web (React.js Resources)
 
 * Next.js
+ * [MUI](https://github.com/mui/material-ui/tree/master/examples/material-next)
 * [Leaflet](https://leafletjs.com) for web mapping
 * Possibly [Netlify](netlify.com) for hosting
   * [Netlify API Calls](https://docs.netlify.com/edge-functions/api/)
