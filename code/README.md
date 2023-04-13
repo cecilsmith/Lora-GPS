@@ -14,5 +14,6 @@
 
 * Next.js
 * [Leaflet](https://leafletjs.com) for web mapping
-* Possibly Netlify for hosting
+* Possibly [Netlify](netlify.com) for hosting
   * [Netlify API Calls](https://docs.netlify.com/edge-functions/api/)
+  * [Netlify .env](https://cli.netlify.com/commands/env/#envimport)
