@@ -4,8 +4,8 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-byte nonsense_var = 0;
-#define DEBUG 1 // set to 0 to disable debugging features (more efficient code)
+#define DEBUG 1            // set to 0 to disable debugging features (more efficient code)
+#define EXTERNAL_DISPLAY 1 // set to 0 to disable this feature
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
@@ -13,9 +13,11 @@ byte nonsense_var = 0;
 // SoftwareSerial SoftSerial(2, 3);
 // SoftwareSerial GPSSerial(2, 3);
 
+#if EXTERNAL_DISPLAY == 1
 #define OLED_RESET -1       // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+#endif
 
 Air530Class Air530;
 
@@ -31,6 +33,7 @@ void setup()
   Serial.println("Serial started");
 #endif
 
+#if EXTERNAL_DISPLAY == 1
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS))
   {
 #if DEBUG == 1
@@ -42,6 +45,7 @@ void setup()
     display.clearDisplay();
     display.display();
   }
+#endif
 
   Air530.begin();
   Air530.reset();
@@ -56,7 +60,7 @@ void setup()
    */
 
   Air530.setmode(MODE_GPS_GLONASS); // was commented out
-#if DEBUG == 1
+#if (EXTERNAL_DISPLAY == 1) && (DEBUG == 1)
   String sampleGLL = "$GNGLL,4458.02481,N,09313.50745,W,232623.000,A,A*58";
   if (parseGLLData(sampleGLL))
   {
@@ -89,8 +93,9 @@ void setup()
    *  width : max value is 998 ms, default value is 500ms;
    */
   // Air530.setPPS(3, 500); // Was commented out
-
+#if DEBUG == 1
   Serial.println(NMEA);
+#endif
 }
 
 void loop()
@@ -109,6 +114,7 @@ void loop()
 
   if (parseGLLData(NMEA))
   {
+#if EXTERNAL_DISPLAY == 1
     display.clearDisplay();
     display.setTextSize(1);              // Normal 1:1 pixel scale
     display.setTextColor(SSD1306_WHITE); // Draw white text
@@ -118,6 +124,7 @@ void loop()
     display.print("Long: ");
     display.println(longitude, 5);
     display.display();
+#endif
   }
 
 #if DEBUG == 1
