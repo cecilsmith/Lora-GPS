@@ -2,6 +2,8 @@
 
 During the development and testing phase of this project, it became clear that the Arduino Nano was not up for the task. In my testing, I was not able to get two simultaneous `SoftwareSerial` instances running at the same time, and when I tried to include the display, there was not enough SRAM for the Nano to operate. Thus, I had to turn to the Arduino Nano 33 IoT board. With this board, I was able to create two custom UART (Serial) interfaces using the leftover SERCOM ports (i.e. I was able to run two hardware Serial ports). Not only did this increase efficiency, it also reduced the overall flash size.
 
+![Arduino-Nano-33-IoT-Board-Pinout-Diagram-Top-CIRCUITSTATE-01](https://user-images.githubusercontent.com/19243227/234469213-10742eae-4b89-468b-9a67-687431a6a9a8.png)
+
 
 # Useful Sources
 
