@@ -16,6 +16,8 @@ During the development and testing phase of this project, it became clear that t
 
 [GitHub Library for Wio-E5](https://github.com/disk91/Disk91_LoRaE5)
 
+[SERCOM Explanation](https://stackoverflow.com/a/57541921)
+
 ## Web (React.js Resources)
 
 * Next.js
