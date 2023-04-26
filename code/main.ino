@@ -181,15 +181,6 @@ void loop(void)
     String NMEA = Air530.getGLL();
     if (parseGLLData(NMEA))
     {
-        /*display.clearDisplay();
-        display.setTextSize(1);              // Normal 1:1 pixel scale
-        display.setTextColor(SSD1306_WHITE); // Draw white text
-        display.setCursor(0, 0);             // Start at top-left corner
-        display.print("Lat: ");
-        display.println(latitude, 5);
-        display.print("Long: ");
-        display.println(longitude, 5);
-        display.display();*/
         Serial.print("Lat: ");
         Serial.println(latitude);
         Serial.print("Long : ");
@@ -247,9 +238,6 @@ void loop(void)
             sprintf(cmd, "AT+CMSGHEX=\"");
             strcat(cmd, compositionBuffer);
             strcat(cmd, "\"\r\n");
-
-            /*char cmd[128];
-            sprintf(cmd, "AT+CMSGHEX=\"%04A%04A\"\r\n", (double)latitude, (double)longitude);*/
             Serial.println(cmd);
 
             ret = at_send_check_response("Done", 5000, cmd);
