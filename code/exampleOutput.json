@@ -1,0 +1,75 @@
+{
+  "name": "as.up.data.forward",
+  "time": "2023-04-26T09:35:31.247096511Z",
+  "identifiers": [
+    {
+      "device_ids": {
+        "device_id": "eui-2cf7f12042005eec",
+        "application_ids": {
+          "application_id": "gps-sensor-1"
+        },
+        "dev_eui": "2CF7F12042005EEC",
+        "join_eui": "8000000000000006"
+      }
+    }
+  ],
+  "data": {
+    "@type": "type.googleapis.com/ttn.lorawan.v3.ApplicationUp",
+    "end_device_ids": {
+      "device_id": "eui-2cf7f12042005eec",
+      "application_ids": {
+        "application_id": "gps-sensor-1"
+      },
+      "dev_eui": "2CF7F12042005EEC",
+      "join_eui": "8000000000000006"
+    },
+    "correlation_ids": [
+      "as:up:01GYYEP0XD5MM92ER21BQGGM7D",
+      "rpc:/ttn.lorawan.v3.AppAs/SimulateUplink:5855192d-bd00-4a45-a99d-113e2ba71b97"
+    ],
+    "received_at": "2023-04-26T09:35:31.244641980Z",
+    "uplink_message": {
+      "f_port": 8,
+      "frm_payload": "eyJzdGF0ZSI6eyJsYXRpdHVkZSI6NDQuOTY3MzU1ODMsImxvbmdpdHVkZSI6LTkzLjIzMDc2MjV9fQ==",
+      "decoded_payload": {
+        "state": {
+          "latitude": 44.96735583,
+          "longitude": -93.2307625
+        }
+      },
+      "rx_metadata": [
+        {
+          "gateway_ids": {
+            "gateway_id": "test"
+          },
+          "rssi": 42,
+          "channel_rssi": 42,
+          "snr": 4.2
+        }
+      ],
+      "settings": {
+        "data_rate": {
+          "lora": {
+            "bandwidth": 125000,
+            "spreading_factor": 7
+          }
+        }
+      }
+    },
+    "simulated": true
+  },
+  "correlation_ids": [
+    "as:up:01GYYEP0XD5MM92ER21BQGGM7D",
+    "rpc:/ttn.lorawan.v3.AppAs/SimulateUplink:5855192d-bd00-4a45-a99d-113e2ba71b97"
+  ],
+  "origin": "ip-10-101-14-157.us-west-1.compute.internal",
+  "context": {
+    "tenant-id": "CgN0dG4="
+  },
+  "visibility": {
+    "rights": [
+      "RIGHT_APPLICATION_TRAFFIC_READ"
+    ]
+  },
+  "unique_id": "01GYYEP0XFFTR3JH0Y49VCYZCN"
+}
