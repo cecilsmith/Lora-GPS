@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <ArduinoJson.h>
 #include "GPS_Air530.h"
 #include <Wire.h>
 #include <stdio.h>
@@ -140,6 +141,7 @@ void setup(void)
     Air530.reset();
     Air530.setmode(MODE_GPS_GLONASS); // was commented out
 
+    char cmd[128];
     String sampleGLL = "$GNGLL,4458.02481,N,09313.50745,W,232623.000,A,A*58";
     if (parseGLLData(sampleGLL))
     {
@@ -226,8 +228,30 @@ void loop(void)
             // TURN ON THE BUILT-IN LED ONCE JOINED
             digitalWrite(LED_BUILTIN, HIGH);
 
-            char cmd[128];
-            sprintf(cmd, "AT+CMSGHEX=\"%04A%04A\"\r\n", (double)latitude, (double)longitude);
+            StaticJsonDocument<200> json;
+            json["state"]["latitude"] = latitude;
+            json["state"]["longitude"] = longitude;
+
+            char charArray[64];
+            int len = serializeJson(json, charArray);
+            char buildBuffer[2] = {0};
+            char compositionBuffer[len * 3 + 1] = {0}; // this will hold a string we build
+
+            for (int i = 0; i < len; i++)
+            {
+                sprintf(buildBuffer, "%02X ", (uint8_t)charArray[i]);
+                strcat(compositionBuffer, buildBuffer);
+            }
+
+            char cmd[512];
+            sprintf(cmd, "AT+CMSGHEX=\"");
+            strcat(cmd, compositionBuffer);
+            strcat(cmd, "\"\r\n");
+
+            /*char cmd[128];
+            sprintf(cmd, "AT+CMSGHEX=\"%04A%04A\"\r\n", (double)latitude, (double)longitude);*/
+            Serial.println(cmd);
+
             ret = at_send_check_response("Done", 5000, cmd);
             if (ret)
             {
