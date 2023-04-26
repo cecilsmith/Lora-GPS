@@ -1,8 +1,16 @@
-#include "Arduino.h"
+#include <Arduino.h>
 #include "GPS_Air530.h"
-#include <SoftwareSerial.h>
+// #include <SoftwareSerial.h>
+#include "wiring_private.h"
 
-SoftwareSerial GPSSerial(2, 3);
+// SoftwareSerial GPSSerial(2, 3);
+Uart GPSSerial(&sercom0, 5, 6, SERCOM_RX_PAD_1, UART_TX_PAD_0);
+
+// Attach the interrupt handler to the SERCOM
+void SERCOM0_Handler()
+{
+  GPSSerial.IrqHandler();
+}
 
 double gps_x_pi = 3.14159265358979324 * 3000.0 / 180.0;
 double gps_pi = 3.14159265358979324;
@@ -54,20 +62,16 @@ String calchecksum(String cmd)
   return cmd;
 }
 
-Air530Class::Air530Class(uint8_t RX, uint8_t TX)
-{
-  rx = RX;
-  tx = TX;
-}
-
 Air530Class::Air530Class()
 {
-  rx = 2;
-  tx = 3;
 }
 
 void Air530Class::begin()
 {
+  // Reassign pins 5 and 6 to SERCOM alt
+  pinPeripheral(5, PIO_SERCOM_ALT);
+  pinPeripheral(6, PIO_SERCOM_ALT);
+
   GPSSerial.begin(9600); // was 9600
   delay(1000);
 }
