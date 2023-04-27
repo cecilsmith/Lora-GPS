@@ -63,7 +63,7 @@ void setup()
 
   Air530.setmode(MODE_GPS_GLONASS); // was commented out
 #if (EXTERNAL_DISPLAY == 1) && (DEBUG == 1)
-  String sampleGLL = "$GNGLL,4458.02481,N,09313.50745,W,232623.000,A,A*58";
+  String sampleGLL = "$GNGLL,4558.02481,N,09013.50745,W,232623.000,A,A*58";
   if (parseGLLData(sampleGLL))
   {
     display.clearDisplay();
