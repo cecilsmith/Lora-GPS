@@ -20,12 +20,3 @@ During the development and testing phase of this project, it became clear that t
 [GitHub Library for Wio-E5](https://github.com/disk91/Disk91_LoRaE5)
 
 [SERCOM Explanation](https://stackoverflow.com/a/57541921)
-
-## Web (React.js Resources)
-
-* Next.js
- * [MUI](https://github.com/mui/material-ui/tree/master/examples/material-next)
-* [Leaflet](https://leafletjs.com) for web mapping
-* Possibly [Netlify](netlify.com) for hosting
-  * [Netlify API Calls](https://docs.netlify.com/edge-functions/api/)
-  * [Netlify .env](https://cli.netlify.com/commands/env/#envimport)
